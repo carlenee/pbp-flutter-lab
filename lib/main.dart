@@ -58,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       if(_counter % 2 == 0){
         kondisi = 'GENAP';
-        textcolor = Colors.blue;
+        textcolor = Colors.red;
       }else{
         kondisi = 'GANJIL';
-        textcolor = Colors.red;
+        textcolor = Colors.blue;
       }
     });
   }
