@@ -1,3 +1,4 @@
+import 'package:counter_7/add_budget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Counter_7',
+      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,13 +25,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Program Counter'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,7 +42,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String title = 'Program Counter';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -103,6 +104,45 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         title: Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize:24)),
       ),
+        // Adding drawer menu
+        drawer: Drawer(
+          child: Column(
+            children: [
+              SizedBox(height: 30.0,),
+              // Adding clickable menu
+              ListTile(
+                title: const Text('counter_7'),
+                onTap: () {
+                  // Routing the menu to the main page
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Add Budget'),
+                onTap: () {
+                  // Routing the menu to the form page
+                  Navigator.pushReplacement(
+                    context,
+                      MaterialPageRoute(builder: (context) => const AddBudgetPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Budget Data'),
+                onTap: () {
+                  // Routing the menu to the form page
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: AddBudgetPage.listData)),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
