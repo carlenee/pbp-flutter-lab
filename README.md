@@ -221,7 +221,33 @@ Navigator.push Menambahkan Rute ke tumpukan rute yang dikelola oleh Navigator se
   -  Add a dropdown element containing the type budget with income and expense options.
 
   ```
-
+  DropdownButton<String>(
+                    value: jenis,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    elevation: 16,
+                    hint: Text(
+                      "Choose Type",
+                      style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                    ),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.white,
+                    ),
+                    items: listJenis.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(), onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    jenis = value!;
+                  });
+                },
+                ),
 
   ```
 

@@ -12,9 +12,9 @@ class AddBudgetPage extends StatefulWidget {
 }
 
 class _AddBudgetPageState extends State<AddBudgetPage> {
-  static List<List<Object>> list = [];
+  static final List<List<Object>> list = [];
   final _formKey = GlobalKey<FormState>();
-  String jenis = '';
+  String jenis = 'Income';
   String title = '';
   int amount = 0;
   List<String> listJenis = ['Income', 'Expenses'];
@@ -153,7 +153,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   height: 1,
                 ),
                 DropdownButton<String>(
-                    value: listJenis.first,
+                    value: jenis,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     elevation: 16,
                     hint: Text(
@@ -253,6 +253,16 @@ class BudgetDataPage extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const AddBudgetPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Budget Data'),
+              onTap: () {
+                // Routing the menu to the form page
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: list)),
                 );
               },
             ),
