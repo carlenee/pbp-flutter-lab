@@ -1,3 +1,7 @@
+<details>
+<summary> counter_7 (tugas 7) </summary>
+<pre>
+
 # counter_7
 
 ##  **Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya.** 
@@ -77,3 +81,75 @@ final dapat digunakan untuk deklarasi variabel immutable yang nilainya sudah ata
     ```
     Menambahkan kondisi tersebut sebelum button - agar button - hilang ketika angka 0.
 
+</pre>
+<details> 
+<summary> Budget (Tugas 8) </summary>
+<pre>
+
+1. Explain the difference between Navigator.push and Navigator.pushReplacement.
+
+Navigator.push Menambahkan Rute ke tumpukan rute yang dikelola oleh Navigator sedangkan Navigator.pushReplacement Menambahkan Rute ke tumpukan rute yang dikelola oleh Navigator Ganti rute navigator saat ini dengan mendorong rute yang diberikan dan kemudian membuang rute sebelumnya setelah rute baru selesai dianimasikan.
+
+2. List all the widgets you used in this project and explain their functions.
+
+- Material App : sebagai root dari aplikasi
+- Scaffold : menyediakan struktur dasar dan styling dalam aplikasi
+- Text : Display string dalam satu baris
+- AppBar : display toolbar widgets, seperti title dan actions
+- Padding : widget yang insets child dengan memberikan padding
+- Drawer : Panel Desain Material yang meluncur secara horizontal dari tepi Scaffold  untuk menampilkan tautan navigasi dalam aplikasi.
+- SizedBox : Sebuah kotak dengan ukuran tertentu. Jika diberikan anak, widget ini memaksa anaknya untuk memiliki lebar dan/atau tinggi tertentu
+- Form : Wadah opsional untuk mengelompokkan beberapa widget bidang formulir (mis. widget TextField).
+- FormField: mempertahankan status bidang formulir saat ini, sehingga pembaruan dan kesalahan validasi tercermin secara visual di UI.
+- Container : Widget kenyamanan yang menggabungkan lukisan umum, penentuan posisi, dan widget ukuran.
+- Icon : Material Design Icon
+
+3.  Explain how you implemented the checking list above.
+
+- Add a drawer/hamburger menu to the previously created app and Add three navigation buttons on the drawer/hamburger.
+
+  ```
+  // Adding drawer menu
+      drawer: Drawer(
+        child: Column(
+          children: [
+            SizedBox(height: 30.0,),
+            // Adding clickable menu
+            ListTile(
+              title: const Text('counter_7'),
+              onTap: () {
+                // Routing the menu to the main page
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Add Budget Info'),
+              onTap: () {
+                // Routing the menu to the form page
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddBudgetPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Budget Data'),
+              onTap: () {
+                // Routing the menu to the form page
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: list)),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+  ```
+  - Add an input element with String data type in the form of budget title.
+    ```
+    
+   

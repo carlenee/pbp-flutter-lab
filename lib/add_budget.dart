@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 class AddBudgetPage extends StatefulWidget {
-  static List<List<String>> listData = _AddBudgetPageState.list;
+  static List<List<Object>> listData = _AddBudgetPageState.list;
   const AddBudgetPage({super.key});
 
   @override
@@ -12,15 +12,15 @@ class AddBudgetPage extends StatefulWidget {
 }
 
 class _AddBudgetPageState extends State<AddBudgetPage> {
-  static List<List<String>> list = [];
+  static List<List<Object>> list = [];
   final _formKey = GlobalKey<FormState>();
   String jenis = '';
   String title = '';
-  String amount = '';
+  int amount = 0;
   List<String> listJenis = ['Income', 'Expenses'];
-  List<String> listForm = [];
+  List<Object> listForm = [];
 
-  List<List<String>> _getList(){
+  List<List<Object>> _getList(){
     return list;
   }
   
@@ -128,14 +128,14 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                     ),
                     onChanged: (String? value) {
                       setState(() {
-                        amount = value!;
+                        amount = int.parse(value!);
                       });
                     },
 
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
-                        amount = value!;
+                        amount = int.parse(value!);
                       });
                     },
                     // Validator sebagai validasi form
@@ -273,7 +273,7 @@ class BudgetDataPage extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child:  ListTile(
             title: Text(list[index][0]),
-            subtitle: Text(list[index][1]),
+            subtitle: Text(list[index][1].toString() + "\$"),
             trailing: Text(list[index][2]),
           ),
         )
