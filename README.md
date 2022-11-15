@@ -105,8 +105,17 @@ Navigator.push Menambahkan Rute ke tumpukan rute yang dikelola oleh Navigator se
 - FormField: mempertahankan status bidang formulir saat ini, sehingga pembaruan dan kesalahan validasi tercermin secara visual di UI.
 - Container : Widget kenyamanan yang menggabungkan lukisan umum, penentuan posisi, dan widget ukuran.
 - Icon : Material Design Icon
+- Column : Display children dalam format vertikal
 
-3.  Explain how you implemented the checking list above.
+3. Sebutkan jenis-jenis event yang ada pada Flutter (contoh: onPressed).
+- onPressed, onChanged, AnimationEvent, ClipboardEvent, ErrorEvent , dll
+
+4.  Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
+
+Navigator pada Flutter menggunakan implementasi stack. Navigator menyediakan metode untuk mengubah tumpukan dengan push to stack atau dengan keluar dari tumpukan. Metode Navigator.push adalah untuk menavigasi ke halaman yang lebih baru dan Navigator.pop untuk kembali dari halaman saat ini.
+
+
+5.  Explain how you implemented the checking list above.
 
 - Add a drawer/hamburger menu to the previously created app and Add three navigation buttons on the drawer/hamburger.
 
