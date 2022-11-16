@@ -1,5 +1,11 @@
+import 'package:counter_7/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
+import 'package:intl/intl.dart';
+import 'package:counter_7/drawer.dart';
+
+// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import 'main.dart';
 
@@ -17,12 +23,21 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
   String jenis = 'Income';
   String title = '';
   int amount = 0;
+  DateTime datetime = DateTime.now();
+  DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+  late final String dateString = dateFormat.format(datetime);
+
+  TextEditingController dateInputController = TextEditingController();
+
+
   List<String> listJenis = ['Income', 'Expenses'];
   List<Object> listForm = [];
 
   List<List<Object>> _getList(){
     return list;
   }
+
+
   
   @override
   Widget build(BuildContext context) {
@@ -36,44 +51,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
         ),),
       ),
       // Adding drawer menu
-      drawer: Drawer(
-        child: Column(
-          children: [
-            SizedBox(height: 30.0,),
-            // Adding clickable menu
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                // Routing the menu to the main page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Add Budget Info'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddBudgetPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Budget Data'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: list)),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerClass('Add Budget'),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -179,6 +157,33 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   });
                 },
                 ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: 'Date',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
+                  ),
+                  controller: dateInputController,
+                  readOnly: true,
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime(2050));
+                        
+
+                    if (pickedDate != null) {
+                      dateInputController.text = DateFormat('dd MMMM yyyy').format(pickedDate);
+                    }
+                  },
+                ),
+              
+                SizedBox(height: 20.0,),
                 TextButton(
                   child: const Text(
                     "Save",
@@ -192,6 +197,8 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                       listForm.add(title);
                       listForm.add(amount);
                       listForm.add(jenis);
+                      
+                      listForm.add(dateInputController.text);
                       list.add(listForm);
                       listForm = [];
                       _sendDataToBudgetData(context);
@@ -231,45 +238,8 @@ class BudgetDataPage extends StatelessWidget {
         ),),
       ),
       // Adding drawer menu
-      drawer: Drawer(
-        child: Column(
-          children: [
-            SizedBox(height: 30.0,),
-            // Adding clickable menu
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                // Routing the menu to the main page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Add Budget Info'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddBudgetPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Budget Data'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: list)),
-                );
-              },
-            ),
+      drawer: DrawerClass('Budget Data'),
 
-          ],
-        ),
-      ),
       body: SafeArea(
         child: ListView.builder(
         itemCount: list.length,
@@ -283,7 +253,7 @@ class BudgetDataPage extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child:  ListTile(
             title: Text(list[index][0]),
-            subtitle: Text(list[index][1].toString() + "\$"),
+            subtitle: Text(list[index][1].toString() + "\$ , " + list[index][3]),
             trailing: Text(list[index][2]),
           ),
         )
