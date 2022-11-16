@@ -171,6 +171,18 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   readOnly: true,
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
+                        builder: (context, child) {
+                        return Theme(
+                          data: Theme.of(context).copyWith(
+                            colorScheme: ColorScheme.light(
+                              primary: Color.fromRGBO(128,212,196,1), // header background color
+                              onPrimary: Colors.white, // header text color
+                              onSurface: Color.fromRGBO(128,212,196,1), // body text color
+                            ),
+                          ),
+                          child: child!,
+                        );
+                      },
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1950),
