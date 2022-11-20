@@ -1,6 +1,6 @@
-import 'package:counter_7/add_budget.dart';
+import 'package:counter_7/pages/add_budget.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/drawer.dart';
+import 'package:counter_7/widget/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,8 +47,6 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-
-
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -56,12 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String kondisi = 'GENAP';
   Color textcolor = Colors.black;
 
-  void setOddEven(){
+  void setOddEven() {
     setState(() {
-      if(_counter % 2 == 0){
+      if (_counter % 2 == 0) {
         kondisi = 'GENAP';
         textcolor = Colors.red;
-      }else{
+      } else {
         kondisi = 'GANJIL';
         textcolor = Colors.blue;
       }
@@ -78,13 +76,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
   void _decrementCounter() {
     setState(() {
       _counter--;
     });
   }
 
-  Color getTextColor(){
+  Color getTextColor() {
     return textcolor;
   }
 
@@ -97,74 +96,78 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        backgroundColor: Color(0xffb2d2a4),
-        centerTitle: true,
-        elevation: 0,
-        title: Text(widget.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize:24)),
-      ),
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          backgroundColor: Color(0xffb2d2a4),
+          centerTitle: true,
+          elevation: 0,
+          title: Text(widget.title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        ),
         // Adding drawer menu
-      drawer: DrawerClass('counter_7'),
-
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+        drawer: DrawerClass('counter_7'),
+        body: Center(
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: Column(
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Invoke "debug painting" (press "p" in the console, choose the
+            // "Toggle Debug Paint" action from the Flutter Inspector in Android
+            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+            // to see the wireframe for each widget.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('$kondisi',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: getTextColor())),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('$kondisi', style: TextStyle(fontWeight: FontWeight.bold, fontSize:24, color: getTextColor())),
+            FloatingActionButton(
+              onPressed: () {
+                _incrementCounter();
+                setOddEven();
+              },
+              backgroundColor: Color(0xffb2d2a4),
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
             SizedBox(
-              height: 20.0,
+              width: 100.0,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-
+            if (_counter != 0)
+              FloatingActionButton(
+                onPressed: () {
+                  _decrementCounter();
+                  setOddEven();
+                },
+                backgroundColor: Color(0xffb2d2a4),
+                tooltip: 'Increment',
+                child: Icon(Icons.remove),
+              ),
           ],
-        ),
-      ),
-          floatingActionButton: Row(
-           mainAxisAlignment: MainAxisAlignment.center,
-           children: <Widget>[
-             FloatingActionButton(
-                 onPressed: (){
-                   _incrementCounter();
-                   setOddEven();
-                 },
-                 backgroundColor: Color(0xffb2d2a4),
-                 tooltip: 'Increment',
-                 child: Icon(Icons.add),
-             ),
-             SizedBox(width: 100.0,),
-             if(_counter != 0)FloatingActionButton(
-               onPressed: (){
-                 _decrementCounter();
-                 setOddEven();
-               },
-               backgroundColor: Color(0xffb2d2a4),
-               tooltip: 'Increment',
-               child: Icon(Icons.remove),
-             ),
-           ],
-         )
-
-    );
+        ));
   }
 }

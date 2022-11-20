@@ -1,9 +1,9 @@
 import 'dart:html';
 
-import 'package:counter_7/add_budget.dart';
+import 'package:counter_7/pages/add_budget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'package:counter_7/main.dart';
 
 class DrawerClass extends StatelessWidget{
   DrawerClass(this.currentPage);
