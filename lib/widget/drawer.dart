@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:counter_7/pages/add_budget.dart';
+import 'package:counter_7/pages/watch_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/main.dart';
@@ -52,6 +53,19 @@ class DrawerClass extends StatelessWidget{
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: AddBudgetPage.listData)),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('My Watch List'),
+              onTap: () {
+                // Routing the menu to the form page
+                Navigator.of(context).pop();
+                if(this.currentPage == 'My Watch List') return;
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  const WatchListPage()),
                 );
               },
             ),
