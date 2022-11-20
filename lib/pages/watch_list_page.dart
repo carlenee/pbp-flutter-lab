@@ -140,7 +140,8 @@ class _WatchListPageState extends State<WatchListPage> {
                             margin: const EdgeInsets.all(10),
                             color: Color(0xFFB2DFDB),
                             child: ListTile(
-                              title: Text(_watchlist[index]["fields"]["title"]),
+                              title: Text(
+                                  _watchlist[index]["fields"]["title"]),
                               onTap: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -152,13 +153,11 @@ class _WatchListPageState extends State<WatchListPage> {
                                             rating: _watchlist[index]["fields"]
                                                 ["rating"],
                                             releasedDate: _watchlist[index]
-                                                ["fields"]["released_date"],
+                                                ["fields"]["release_date"],
                                             review: _watchlist[index]["fields"]
                                                 ["review"],
-                                          )
-                                          )),
-                            )
-                            );
+                                          ))),
+                            ));
                       },
                     ),
                   )
