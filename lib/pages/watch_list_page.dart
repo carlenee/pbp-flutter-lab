@@ -75,31 +75,41 @@ class _WatchListPageState extends State<WatchListPage> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 8),
                       padding: const EdgeInsets.all(20.0),
-                      
+                      decoration: BoxDecoration(
+                        color: Color(0xffb2d2a4),
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
                       child: GestureDetector(
                         onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => WatchListDetailPage(
-                                  title: futureWatchList[index].fields.title,
-                                  watched: futureWatchList[index].fields.watched,
-                                  rating: futureWatchList[index].fields.rating,
-                                  releasedDate: futureWatchList[index].fields.releaseDate.toString(),
-                                  review: futureWatchList[index].fields.review,
-                                ))),
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WatchListDetailPage(
+                                      title:
+                                          futureWatchList[index].fields.title,
+                                      watched:
+                                          futureWatchList[index].fields.watched,
+                                      rating:
+                                          futureWatchList[index].fields.rating,
+                                      releasedDate: futureWatchList[index]
+                                          .fields
+                                          .releaseDate
+                                          .toString(),
+                                      review:
+                                          futureWatchList[index].fields.review,
+                                    ))),
                         child: Row(
-                        children: [
-                          Text(
-                            "${snapshot.data![index].fields.title}",
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
+                          children: [
+                            Text(
+                              "${snapshot.data![index].fields.title}",
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      ),
-                      
                     ),
                   );
                 }
