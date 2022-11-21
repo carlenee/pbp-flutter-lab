@@ -3,6 +3,8 @@ import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widget/drawer.dart';
+
 class WatchListDetailPage extends StatelessWidget {
   final String title;
   final bool watched;
@@ -36,6 +38,19 @@ class WatchListDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
+          title: const Text(
+            'My Watch List',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              color: Colors.black54,
+            ),
+          ),
+        ),
+        drawer: DrawerClass("My Watch List"),
         body: Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(

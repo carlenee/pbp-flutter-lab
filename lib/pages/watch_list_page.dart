@@ -107,6 +107,19 @@ class _WatchListPageState extends State<WatchListPage> {
                                 color: Colors.white,
                               ),
                             ),
+                            SizedBox(
+                              width: 100.0,
+                            ),
+                            Checkbox(
+                                checkColor: Colors.white,
+                                activeColor: const Color(0xffb2d2a4),
+                                value: futureWatchList[index].fields.watched,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    futureWatchList[index].fields.watched =
+                                        value!;
+                                  });
+                                }),
                           ],
                         ),
                       ),
