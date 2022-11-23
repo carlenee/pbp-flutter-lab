@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:counter_7/pages/watch_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,8 +51,8 @@ class WatchListDetailPage extends StatelessWidget {
             ),
           ),
         ),
-        drawer: DrawerClass("My Watch List"),
-        body: Padding(
+      drawer: DrawerClass("My Watch List"),
+      body: Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -82,8 +83,33 @@ class WatchListDetailPage extends StatelessWidget {
             "Review: " + review,
             style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
           ),
+          const Spacer(),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50), 
+                  backgroundColor:  Color(0xffb2d2a4)
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const WatchListPage()),
+              );
+                },
+                child: const Text(
+                  "Back",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+          )
+
         ],
       ),
+  
+      
+      
     ));
   }
 }
