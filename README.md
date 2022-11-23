@@ -378,5 +378,50 @@ Navigator pada Flutter menggunakan implementasi stack. Navigator menyediakan met
 </pre>
 </details>
 
+<details>
+<summary> Watch List </summary>
+<pre>
+
+##  **Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?.** 
+
+Ya bisa, kita dapat menggunakan manual serialization yaitu dengan menggunakan built-in JSON decoder dari dart:convert. Kita akan passing raw JSON String ke jsonDecode(), kemudian hasilnya akan ada pada Map<String, dynamic>. Namun membuat model akan lebih baik sebelum melakukan pengambilan data JSON, karena jika kita mengambil banyak akan lebih error-prone dan susah untuk di manage, jika JSON field typo / tidak ada maka akan error saat runtime.
+
+##  ** Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.** 
+
+- Material App : sebagai root dari aplikasi
+- Scaffold : menyediakan struktur dasar dan styling dalam aplikasi
+- Text : Display string dalam satu baris
+- AppBar : display toolbar widgets, seperti title dan actions
+- Padding : widget yang insets child dengan memberikan padding
+- Drawer : Panel Desain Material yang meluncur secara horizontal dari tepi Scaffold  untuk menampilkan tautan navigasi dalam aplikasi.
+- ListView : Display children satu persatu dalam scrolling direction
+- SizedBox : Sebuah kotak dengan ukuran tertentu. Jika diberikan anak, widget ini memaksa anaknya untuk memiliki lebar dan/atau tinggi tertentu
+- Container : Widget kenyamanan yang menggabungkan lukisan umum, penentuan posisi, dan widget ukuran.
+- Column : Display children dalam format vertikal
+
+##  ** Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.** 
+
+1. Menambahkan dependensi http ke proyek, dependency ini digunakan untuk bertukar data melalui HTTP request, seperti GET, POST, PUT, dan lain-lain.
+
+2. Membuat model sesuai dengan respons dari data yang berasal dari web service tersebut.
+
+3. Membuat http request ke web service menggunakan dependency http.
+
+4. Mengkonversikan objek yang didapatkan dari web service ke model yang telah kita buat di langkah kedua.
+
+5. Menampilkan data yang telah dikonversi ke aplikasi dengan FutureBuilder.
+
+##  ** Cara Implementasi.** 
+
+1. Menambahkan drawer untuk watchlist
+2. Membuat model yang sesuai untuk data json mywatchlist
+3. Membuat function untuk fetch data dari mywatchlist/json
+4. Menampilkan data pada widget
+5. Membuat page detail untuk data
+
+</pre>
+</details>
+
+
 
    
